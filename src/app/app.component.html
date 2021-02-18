@@ -1,27 +1,23 @@
-<app-intro></app-intro>
-<!-- Header End -->
+<nav id="nav-wrap">
+  <a class="mobile-btn" href="#nav-wrap" title="Show navigation"
+    >Show navigation</a
+  >
+  <a class="mobile-btn" href="#" title="Hide navigation"
+    >Hide navigation</a
+  >
 
-<!-- About Section
-================================================== -->
-<app-about-me></app-about-me>
-<app-education></app-education>
-
-<!-- About Section End-->
-
-<!-- Resume Section
-================================================== -->
-<app-professional-info></app-professional-info>
-<!-- Resume Section End-->
-<!-- Portfolio Section
-================================================== -->
-<app-technologies></app-technologies>
-<!-- Portfolio Section End-->
-
-<!-- Contact Section
-================================================== -->
-<app-contact></app-contact>
-<!-- Contact Section End-->
-
+  <ul id="nav" class="nav">
+    <li> <a routerLinkActive="active-link" routerLink="/intro">Intro</a></li>
+    <li>
+    <li> <a routerLinkActive="active-link" routerLink="/personal">Personal</a></li>
+    <li>
+      <a routerLinkActive="active-link" routerLink="/professional">Professional</a>
+    </li>
+    <li><a routerLinkActive="active-link" routerLink="/contact">Contact</a></li>
+  </ul>
+  <!-- end #nav -->
+</nav>
+<router-outlet></router-outlet>
 <!-- footer
 ================================================== -->
 <footer>
@@ -29,16 +25,16 @@
     <div class="twelve columns">
       <ul class="social-links">
         <li>
-          <a href="https://www.facebook.com/sumant.kawathekar"><i class="fa fa-facebook"></i></a>
+          <a href="https://www.facebook.com/sumant.kawathekar" target="_blank"><i class="fa fa-facebook"></i></a>
         </li>
         <li>
-          <a href="#"><i class="fa fa-google-plus"></i></a>
+          <a href="#"><i class="fa fa-google-plus" target="_blank"></i></a>
         </li>
         <li>
-          <a href="https://www.linkedin.com/in/sumant-kawathekar-7ba57a102/"><i class="fa fa-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/sumant-kawathekar-7ba57a102/" target="_blank"><i class="fa fa-linkedin"></i></a>
         </li>
         <li>
-          <a href="https://www.instagram.com/sumantkawathekar"><i class="fa fa-instagram"></i></a>
+          <a href="https://www.instagram.com/sumantkawathekar" target="_blank"><i class="fa fa-instagram"></i></a>
         </li>
         <li>
           <a href="#"><i class="fa fa-skype"></i></a>
@@ -46,10 +42,5 @@
       </ul>
     </div>
 
-    <div id="go-top">
-      <a class="smoothscroll" title="Back to Top" href="#home"
-        ><i class="icon-up-open"></i
-      ></a>
-    </div>
   </div>
 </footer>

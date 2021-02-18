@@ -14,6 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { EducationComponent } from './education/education.component';
+import { PersonalComponent } from './personal/personal.component';
+import { ProfessionalComponent } from './professional/professional.component';
+import { MainComponent } from './main/main.component';
+import { HobbiesComponent } from './hobbies/hobbies.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,12 @@ import { EducationComponent } from './education/education.component';
     ProfessionalInfoComponent,
     TechnologiesComponent,
     ContactComponent,
-    EducationComponent
+    EducationComponent,
+    PersonalComponent,
+    ProfessionalComponent,
+    MainComponent,
+    HobbiesComponent
+    
   ],
   imports: [
     BrowserModule,

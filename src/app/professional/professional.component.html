@@ -1,0 +1,23 @@
+<section id="professional-info">
+<nav class="professional-info-btn">
+    <ul id="nav" >
+      <li> <button (click)="gotoProject()">Projects</button></li>
+      <li>
+        <button (click)="gotoTechnologies()">Technologies</button>
+      </li>
+    </ul>
+    <!-- end #nav -->
+  </nav>
+<app-professional-info></app-professional-info>
+<app-technologies></app-technologies>
+
+<footer>
+    <div class="row">
+      <div id="go-top">
+        <a (click)="gotoTop()"
+          ><i class="icon-up-open"></i
+        ></a>
+      </div>
+    </div>
+  </footer>
+</section>

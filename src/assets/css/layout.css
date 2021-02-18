@@ -172,7 +172,9 @@ ul#nav li a:active {
 ul#nav li.current a {
    color: #f06000;
 }
-
+.active-link {
+   color:#f06000 !important
+}
 /* About Section  */
 
 #about {
@@ -229,7 +231,7 @@ ul#nav li.current a {
 }
 #education {
  
-      background: #fff;
+      background: #191919;
       padding-top: 90px;
       padding-bottom: 72px;
       overflow: hidden;
@@ -237,8 +239,8 @@ ul#nav li.current a {
 
 /* Resume Section  */
 
-#resume {
-   background: #ebeeee;
+#professional-info {
+   background: #191919;
    padding-top: 90px;
    padding-bottom: 72px;
    overflow: hidden;
@@ -250,7 +252,7 @@ ul#nav li.current a {
 }
 #resume a:hover,
 #resume a:focus {
-   color: #313131;
+   color: #fff;
 }
 
 #resume h1 {
@@ -309,7 +311,7 @@ ul#nav li.current a {
 }
 .bars li em {
    font: 15px "opensans-bold", sans-serif;
-   color: #313131;
+   color: #fff;
    text-transform: uppercase;
    letter-spacing: 2px;
    font-weight: normal;
@@ -322,7 +324,7 @@ ul#nav li.current a {
    top: 0;
    margin: 0;
    padding-right: 24px;
-   background: #313131;
+   background: #fff;
    display: inline-block;
    height: 20px;
    line-height: 20px;
@@ -460,18 +462,14 @@ ul#nav li.current a {
 
 /* Portfolio Section  */
 
-#portfolio {
-   background: #fff;
-   padding-top: 90px;
-   padding-bottom: 60px;
-}
+
 #portfolio h1 {
    font: 15px/24px "opensans-semibold", sans-serif;
    text-transform: uppercase;
    letter-spacing: 1px;
    text-align: center;
    margin-bottom: 48px;
-   color: #95a3a3;
+   color: #fff;
 }
 
 /* Portfolio Content */
