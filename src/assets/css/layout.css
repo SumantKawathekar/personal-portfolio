@@ -966,7 +966,7 @@ ul#nav li.current a {
 }
 #contact button.submit:hover {
    color: #0d0d0d;
-   background: #fff;
+   background: #00cccc;
 }
 #contact span.required {
    color: #11abb0;

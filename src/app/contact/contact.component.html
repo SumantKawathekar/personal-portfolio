@@ -16,7 +16,7 @@
                 formControlName="contactName"
               />
             </div>
-            <div *ngIf="submitted && contactForm.controls.contactName.errors && contactForm.controls.contactName.errors.required">Name is required</div>
+            <div class="error" *ngIf="contactForm.controls.contactName.touched && contactForm.controls.contactName.errors && contactForm.controls.contactName.errors.required">Name is required</div>
   
             <div>
               <label for="contactEmail"
@@ -30,7 +30,7 @@
                 formControlName="contactEmail"
               />
             </div>
-            <div *ngIf="submitted && contactForm.controls.contactEmail.errors 
+            <div class="error" *ngIf="contactForm.controls.contactEmail.touched && contactForm.controls.contactEmail.errors 
             && contactForm.controls.contactEmail.errors.required &&contactForm.controls.contactEmail.errors.required">Email is required</div>
 
   
@@ -57,11 +57,17 @@
                 formControlName="contactMessage"
               ></textarea>
             </div>
-            <div *ngIf="submitted && contactForm.controls.contactMessage.errors && contactForm.controls.contactMessage.errors.required">Message is required</div>
+            <div class="error" *ngIf="contactForm.controls.contactMessage.touched &&contactForm.controls.contactMessage.errors && contactForm.controls.contactMessage.errors.required">Message is required</div>
 
   
             <div>
-              <button [disabled]="!contactForm.valid"  (click)="submitContactRequest()">Submit</button>
+              <button>
+                <a target="_blank"href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=suma.kawathekar@gmail.com
+                ">
+                Submit
+                </a>
+                </button>
+                
             </div>
           </fieldset>
         </form>

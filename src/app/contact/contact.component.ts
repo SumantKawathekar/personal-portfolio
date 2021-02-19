@@ -10,6 +10,7 @@ export class ContactComponent implements OnInit {
   public showSucces = false;
   public submitted = false;
   public contactForm: FormGroup;
+  public href=""
 
   constructor(
     private readonly fb: FormBuilder,
@@ -36,9 +37,11 @@ export class ContactComponent implements OnInit {
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
+      this.showSucces = true;
+
     }, 5000);
 
-    this.showSucces = true;
+   
    
 
   }
