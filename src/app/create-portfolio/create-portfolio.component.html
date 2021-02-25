@@ -1,0 +1,104 @@
+<div id="edit">
+  <form [formGroup]="createPortfolioForm" class="form-wrapper">
+    <mat-label>Your full name: </mat-label>
+    <input matInput type="text" formControlName="name" placeholder="Your name">
+
+    <mat-label>Your email ID: </mat-label>
+    <input matInput type="text" formControlName="email" placeholder="Your email">
+
+    <mat-label>Your unique username: </mat-label>
+    <input matInput type="text" formControlName="userName" placeholder="Give unique username">
+
+    <mat-label>About Yourself: </mat-label>
+    <textarea matInput type="text" formControlName="aboutMe" placeholder="Write something about yourself"></textarea>
+
+    <mat-label>Name of College/University: </mat-label>
+    <input matInput type="text" formControlName="universityName" placeholder="Your Unversity or College Name">
+
+    <mat-label>Qualification: </mat-label>
+    <input matInput type="text" formControlName="degreeName" placeholder="Your Degree">
+
+    <mat-radio-group formControlName="enableExp" aria-label="Select an option">
+      <mat-radio-button value="fresher">Fresher</mat-radio-button>
+      <mat-radio-button value="experienced">Experienced</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-divider></mat-divider>
+    <div *ngIf="createPortfolioForm.controls.enableExp.value==='experienced'">
+      <h1>Experience</h1>
+      <div formArrayName="experienceBlocks" *ngFor="let experience of
+      createPortfolioForm.get('experienceBlocks')['controls']; let i = index">
+        <div [formGroupName]="i">
+          <mat-label>Project Name</mat-label>
+          <input type="text" placeholder="Name of project" formControlName="projectTitle" />
+          <mat-label>Project Info</mat-label>
+          <textarea type="text" placeholder="Add project info" formControlName="projectInfo"></textarea>
+          <mat-label>Project Role</mat-label>
+          <input type="text" placeholder="Ex. Senior Developer" formControlName="projectRole" />
+
+        </div>
+        <button class="float-left" mat-icon-button color="primary" aria-label="Add" (click)="addExperience()"
+          matTooltip="Add">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+        <button class="float-left" mat-icon-button color="primary" aria-label="Add" (click)="removeClick(i)"
+          matTooltip="Add">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+      </div>
+
+      <div formArrayName="skills" *ngFor="let skill of
+      createPortfolioForm.get('skills')['controls']; let i = index">
+        <div [formGroupName]="i">
+          <mat-label>Skill Name</mat-label>
+          <input type="text" placeholder="Name of project" formControlName="skillName" />
+        </div>
+        <button class="float-left" mat-icon-button color="primary" aria-label="Add" (click)="addSkill()"
+          matTooltip="Add">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+        <button class="float-left" mat-icon-button color="primary" aria-label="Add" (click)="removeSkill(i)"
+          matTooltip="Add">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    <h1>Address Details</h1>
+
+    <div formArrayName="address" *ngFor="let address of
+    createPortfolioForm.get('address')['controls']; let i = index">
+      <div [formGroupName]="i">
+        <mat-label>House/Flat Number</mat-label>
+        <input type="text" placeholder="House" formControlName="houseInfo" />
+        <mat-label>Area</mat-label>
+        <input type="text" placeholder="Area" formControlName="areaInfo" />
+        <mat-label>City</mat-label>
+        <input type="text" placeholder="Name of city" formControlName="cityInfo" />
+        <mat-label>Zipcode</mat-label>
+        <input type="text" placeholder="Zipcode" formControlName="zipCode" />
+        <mat-label>Phone</mat-label>
+        <input type="text" placeholder="Phone Number" formControlName="phoneNumber" />
+      </div>
+    </div>
+
+    <!-- <mat-label>Society or House name: </mat-label>
+    <input matInput type="text" formControlName="houseInfo" placeholder="Society name">
+
+    <mat-label>Area: </mat-label>
+    <input matInput type="text" formControlName="areaInfo" placeholder="Area">
+
+    <mat-label>City: </mat-label>
+    <input matInput type="text" formControlName="cityInfo" placeholder="City">
+
+    <mat-label>Zipcode: </mat-label>
+    <input matInput type="text" formControlName="zipCode" placeholder="Zipcode">
+
+    <mat-label>Phone: </mat-label>
+    <input matInput type="text" formControlName="phoneNumber" placeholder="Phone Number"> -->
+
+    <button (click)="onSubmit()">Save</button>
+
+  </form>
+</div>

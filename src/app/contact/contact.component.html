@@ -82,13 +82,14 @@
       </div>
   
       <aside class="four columns footer-widgets">
-        <div class="widget widget_contact">
+        <div class="widget widget_contact" *ngIf="userData && userData.address">
           <h4>Contact Details</h4>
           <p class="address">
-            Sumant Kawathekar<br />
-            Baner <br />
-            Pune 411027 <br />
-            <span>8308669056</span>
+            {{userData.name}}<br />
+            {{userData.address[0].houseInfo}} <br />
+            {{userData.address[0].areaInfo}} <br />
+            {{userData.address[0].cityInfo}} {{userData.address[0].zipCode}} <br />
+            <span>{{userData.address[0].phoneNumber}}</span>
           </p>
         </div>
       </aside>

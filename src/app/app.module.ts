@@ -18,6 +18,9 @@ import { PersonalComponent } from './personal/personal.component';
 import { ProfessionalComponent } from './professional/professional.component';
 import { MainComponent } from './main/main.component';
 import { HobbiesComponent } from './hobbies/hobbies.component';
+import { CreatePortfolioComponent } from './create-portfolio/create-portfolio.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { HobbiesComponent } from './hobbies/hobbies.component';
     PersonalComponent,
     ProfessionalComponent,
     MainComponent,
-    HobbiesComponent
+    HobbiesComponent,
+    CreatePortfolioComponent,
+    HeaderComponent,
+    FooterComponent
     
   ],
   imports: [

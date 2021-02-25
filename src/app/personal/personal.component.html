@@ -1,3 +1,51 @@
-<app-about-me></app-about-me>
-<app-education></app-education>
-<app-hobbies></app-hobbies>
+<!-- <app-about-me></app-about-me>
+<app-education></app-education> -->
+
+<section id="about">
+    <div class="row">
+      <div class="three columns">
+        <img class="profile-pic" src="assets/images/profilepic.jpg" alt="" />
+      </div>
+  
+      <div class="nine columns main-col">
+        <h2>About Me</h2>
+  
+        <p *ngIf="userData">
+          {{userData.aboutMe}}
+          
+        </p>
+  
+        <div class="download">
+          <a href="https://drive.google.com/file/d/1YUGw9X6eFQz43F0phatx91KY1ApZ9doI/view?usp=sharing" target="_blank" class="button"
+            ><i class="fa fa-download"></i>Download Resume</a
+          >
+        </div>
+      </div>
+      <!-- end .main-col -->
+    </div>
+  </section>
+  <section id="education">
+    <!-- Education
+    ----------------------------------------------- -->
+    <div class="row work">
+      <div class="three columns header-col">
+        <h1><span>Education</span></h1>
+      </div>
+  
+      <div class="nine columns main-col">
+        <div class="row item">
+          <div class="twelve columns" *ngIf="userData">
+            <h3>{{userData.universityName}}</h3>
+            <p class="info">
+                {{userData.degreeName}}<span>&bull;</span>
+              <em class="date">May 2016</em>
+            </p>
+          </div>
+        </div>
+        <!-- item end -->
+        <!-- item end -->
+      </div>
+      <!-- main-col end -->
+    </div>
+    </section>
+    <app-hobbies></app-hobbies>

@@ -236,6 +236,14 @@ ul#nav li.current a {
       padding-bottom: 72px;
       overflow: hidden;
 }
+/* Edit Section  */
+
+#edit {
+   background: #191919;
+   padding-top: 90px;
+   padding-bottom: 72px;
+   overflow: hidden;
+}
 
 /* Resume Section  */
 

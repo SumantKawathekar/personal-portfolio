@@ -8,9 +8,167 @@
     </ul>
     <!-- end #nav -->
   </nav>
-<app-professional-info></app-professional-info>
-<app-technologies></app-technologies>
 
+  <section id="resume">
+    <!-- Work
+    ----------------------------------------------- -->
+    <div class="row work">
+      <div class="three columns header-col">
+        <h1><span>Work</span></h1>
+      </div>
+  
+      <div class="nine columns main-col" *ngFor="let exp of professionalData">
+        <div class="row item">
+          <div class="twelve columns">
+            <h3>{{exp.projectTitle}}</h3>
+            <p class="info">
+              {{exp.projectRole}} <span>&bull;</span>
+              <em class="date">May 2019 - Present</em>
+            </p>
+  
+            <p>
+              {{exp.projectInfo}}
+            </p>
+          </div>
+        </div>
+        <!-- item end -->
+  
+        <!-- <div class="row item">
+          <div class="twelve columns">
+            <h3>Financial Reporting Application</h3>
+            <p class="info">
+              Fullstack Developer <span>&bull;</span>
+              <em class="date">March 2018 - April 2019</em>
+            </p>
+  
+            <p>
+              Worked with US based client in the financial domain
+  The Application is modernization of the FRA legacy which was developed earlier by the current company itself in
+  C# in .Net Silverlight framework.
+  This application was developed to calculate the tax returns for current year and previous years for deals and
+  funds.
+  Responsible for development of front end using <b>Angular and Angular material</b>, web apis' using <b>Nodejs and stored procedures for PostgreSQL
+  database</b>.
+  Responsible for writing the scripts of unit testing using Karma framework
+            </p>
+          </div>
+        </div> -->
+  
+        <!-- <div class="row item">
+          <div class="twelve columns">
+            <h3>Opportunity Calculator</h3>
+            <p class="info">
+              Fullstack Developer <span>&bull;</span>
+              <em class="date">Feb 2017 - April 2018</em>
+            </p>
+  
+            <p>
+              This application is developed for a South East Asian client in the electrical insulation domain
+              This application or tool was developed for a client for assisting their sales team to get involve and understand key
+              calculation parameter of air conditioning estimations.
+              This application calculates ducting, piping and total project cost through the calculator
+              This application is used to track user’s sales and their progress as well
+              The system has an admin panel with functionalities like Manage User, User Login tracking report, User Adoption
+              Report, all Kind of managements dropdown, importing excel file which has data for calculation as master data.
+              Responsible for <b>frontend development using Angular</b> in the project
+              Responsible for deployment of web applications to development, UAT and production servers
+              Wrote the complex part of formula execution and calculations part on frontend
+              Worked on <b>Angular,NodeJS, HTML, CSS</b> in this project
+            </p>
+          </div>
+        </div> -->
+        <!-- item end -->
+      </div>
+      <!-- main-col end -->
+    </div>
+    <!-- End Work -->
+  </section>
+  <section id="portfolio">
+    <div class="row">
+      <div class="twelve columns collapsed">
+        <h1>Check Out My Skill Set.</h1>
+  
+        <!-- portfolio-wrapper -->
+        <div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-thirds cf">
+          <div class="columns portfolio-item">
+            <div class="item-wrap">
+                <img alt="" src="assets/images/Angular.png" />
+                <div class="overlay">
+                  <div class="portfolio-item-meta">
+                    <h5>Angular</h5>
+                    <p>Version 2 to 11</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!-- item end -->
+  
+          <div class="columns portfolio-item">
+            <div class="item-wrap">
+                <img alt="" src="assets/images/ionic2.png" />
+                <div class="overlay">
+                  <div class="portfolio-item-meta">
+                    <h5>Ionic Framework</h5>
+                    <p>Version 2 to 5</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!-- item end -->
+  
+          <div class="columns portfolio-item">
+            <div class="item-wrap">
+                <img alt="" src="assets/images/nodejs.png" />
+                <div class="overlay">
+                  <div class="portfolio-item-meta">
+                    <h5>NodeJs</h5>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!-- item end -->
+  
+          <div class="columns portfolio-item">
+            <div class="item-wrap">
+                <img alt="" src="assets/images/JS.png" />
+                <div class="overlay">
+                  <div class="portfolio-item-meta">
+                    <h5>Javascript</h5>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!-- item end -->
+          <div class="columns portfolio-item">
+            <div class="item-wrap">
+                <img alt="" src="assets/images/typescript.png" />
+                <div class="overlay">
+                  <div class="portfolio-item-meta">
+                    <h5>Typescript</h5>
+                  </div>
+                </div>
+            </div>
+          </div>
+          
+          <div class="columns portfolio-item">
+            <div class="item-wrap">
+                <img alt="" src="assets/images/html.png" />
+                <div class="overlay">
+                  <div class="portfolio-item-meta">
+                    <h5>HTML 5</h5>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!-- item end -->
+        </div>
+        <!-- portfolio-wrapper end -->
+      </div>
+      <!-- twelve columns end -->
+      <!-- modal-01 End -->
+    </div>
+    <!-- row End -->
+  </section>
 <footer>
     <div class="row">
       <div id="go-top">
