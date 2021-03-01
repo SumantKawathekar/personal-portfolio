@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AppService } from '../app.service';
 import { IndexdbService } from '../indexdb.service';
 @Component({
   selector: 'app-contact',
@@ -18,7 +19,8 @@ export class ContactComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly spinner: NgxSpinnerService,
-    private readonly indexdbService: IndexdbService
+    private readonly indexdbService: IndexdbService,
+    private readonly appService: AppService
     ) { }
 
   ngOnInit(): void {
@@ -47,9 +49,14 @@ export class ContactComponent implements OnInit {
     }, 5000);
   }
   async getAllUser() {
-    const users = await this.indexdbService.getUser();
-    this.userData = JSON.parse(users);
-    this.address = this.userData.address
+    this.appService.getUserInfoObs()
+    .subscribe(res => {
+      this.userData = res;
+      this.address = this.userData.address
+
+      console.log(this.userData);
+      console.log(this.address);
+    });
   }
 
 }

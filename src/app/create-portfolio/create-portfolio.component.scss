@@ -2,3 +2,36 @@
     max-width: 600px;
     margin: 0 auto;
 }
+
+.professional-info-btn {
+    margin-bottom: 30px;
+    overflow: hidden;
+
+    ul {
+        li {
+            margin: 0 10px;
+            button {
+                width: 175px;
+                &[disabled] {
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}
+.edit-form-btns {
+    width: 100%;
+    text-align: right;
+    padding-top: 20px;
+    button {
+        width: 175px;
+        height: 40px;
+        margin: 0 10px;
+    }
+}
+
+.error {
+    text-align: left;
+    color: red;
+}
+

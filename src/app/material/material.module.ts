@@ -10,6 +10,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 
@@ -29,7 +33,11 @@ import {MatRadioModule} from '@angular/material/radio';
     MatInputModule,
     MatDividerModule,
     MatSlideToggleModule,
-    MatRadioModule
+    MatRadioModule,
+    MatStepperModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatDatepickerModule
   ],
   exports: [
     MatToolbarModule,
@@ -42,7 +50,11 @@ import {MatRadioModule} from '@angular/material/radio';
     MatInputModule,
     MatDividerModule,
     MatSlideToggleModule,
-    MatRadioModule
+    MatRadioModule,
+    MatStepperModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatDatepickerModule
   ]
 })
 export class MaterialModule { }

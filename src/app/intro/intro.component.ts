@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 import { IndexdbService } from '../indexdb.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class IntroComponent implements OnInit {
   constructor(
     private myElement: ElementRef,
     private readonly indexdbService: IndexdbService,
+    private readonly appService: AppService
     ) { }
 
   ngOnInit(): void {
@@ -24,9 +26,12 @@ export class IntroComponent implements OnInit {
     el.scrollIntoView({behavior: "smooth"});
 
   }
-  async getAllUser() {
-    const users = await this.indexdbService.getUser();
-    this.userObj = JSON.parse(users);
+   getAllUser() {
+      this.appService.getUserInfoObs().subscribe(
+      res => {
+        this.userObj = res
+      }
+    );
     console.log(this.userObj);
   }
 

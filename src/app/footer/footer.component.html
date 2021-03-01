@@ -1,9 +1,9 @@
 <footer>
     <div class="row">
-      <div class="twelve columns">
+      <div class="twelve columns" *ngIf="socialMediaLinks">
         <ul class="social-links">
           <li>
-            <a href="https://www.facebook.com/sumant.kawathekar" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a [attr.href]="socialMediaLinks[0].fbLink" target="_blank"><i class="fa fa-facebook"></i></a>
           </li>
           <li>
             <a href="#"><i class="fa fa-google-plus" target="_blank"></i></a>

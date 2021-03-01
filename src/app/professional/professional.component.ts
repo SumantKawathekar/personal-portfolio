@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 import { IndexdbService } from '../indexdb.service';
 
 @Component({
@@ -11,7 +12,9 @@ export class ProfessionalComponent implements OnInit {
   professionalData: any;
   skillSet: any;
 
-  constructor(private readonly indexdbService: IndexdbService) { }
+  constructor(
+    private readonly indexdbService: IndexdbService,
+    private readonly appService: AppService) { }
 
   ngOnInit(): void {
     this.getAllUser()
@@ -36,11 +39,13 @@ export class ProfessionalComponent implements OnInit {
   }
 
   async getAllUser() {
-    const users = await this.indexdbService.getUser();
-    this.userData = JSON.parse(users);
-    this.professionalData = this.userData.experienceBlocks;
-    this.skillSet = this.userData.skills;
-    console.log(this.skillSet);
+    this.appService.getUserInfoObs()
+    .subscribe(res => {
+      this.userData = res;
+      this.professionalData = this.userData.experienceBlocks;
+      this.skillSet = this.userData.skills;
+      console.log(this.userData);
+    });
   }
 
   

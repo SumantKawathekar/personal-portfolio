@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 import { IndexdbService } from '../indexdb.service';
 
 @Component({
@@ -9,16 +10,21 @@ import { IndexdbService } from '../indexdb.service';
 export class PersonalComponent implements OnInit {
   public userData: any;
 
-  constructor(private readonly indexdbService: IndexdbService) { }
+  constructor(
+    private readonly indexdbService: IndexdbService,
+    private readonly appService: AppService) { }
 
   ngOnInit(): void {
     this.getAllUser();
   }
 
   async getAllUser() {
-    const users = await this.indexdbService.getUser();
-    this.userData = JSON.parse(users);
-    console.log(this.userData);
+    this.appService.getUserInfoObs()
+    .subscribe(res => {
+      this.userData = res
+      console.log(this.userData);
+    });
+   
   }
 
 }

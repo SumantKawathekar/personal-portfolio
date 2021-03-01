@@ -1,4 +1,4 @@
-
+<div *ngIf="isData; else elseBlock">
 <nav id="nav-wrap">
     <a class="mobile-btn" href="#nav-wrap" title="Show navigation"
       >Show navigation</a
@@ -11,7 +11,7 @@
       <li> <a routerLinkActive="active-link" routerLink="/intro">Intro</a></li>
       <li>
       <li> <a routerLinkActive="active-link" routerLink="/personal">Personal</a></li>
-      <li>
+      <li >
         <a routerLinkActive="active-link" routerLink="/professional">Professional</a>
       </li>
       <li><a routerLinkActive="active-link" routerLink="/contact">Contact</a></li>
@@ -19,3 +19,6 @@
     </ul>
     <!-- end #nav -->
   </nav>
+</div>
+<ng-template #elseBlock>Content to render when value is null.</ng-template>
+

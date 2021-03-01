@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-footer',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  userData: any;
+  socialMediaLinks:any;
 
-  constructor() { }
+  constructor(private readonly appService: AppService) { }
 
   ngOnInit(): void {
+
+    this.getSocialMediaLinks();
+  }
+
+  getSocialMediaLinks() {
+    this.appService.getUserInfoObs()
+    .subscribe(res => {
+      this.userData = res;
+      this.socialMediaLinks = this.userData.socialMedia;
+      console.log(this.socialMediaLinks)
+    });
   }
 
 }

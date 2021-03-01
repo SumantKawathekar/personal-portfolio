@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from './app.service';
 import { IndexdbService } from './indexdb.service';
 
 @Component({
@@ -7,9 +8,18 @@ import { IndexdbService } from './indexdb.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private readonly indexdbService: IndexdbService){}
+  userObj: Promise<string>;
+  constructor(
+    private readonly indexdbService: IndexdbService,
+    private readonly appService: AppService){}
   title = 'personal-portfolio';
-  ngOnInit() {
-    this.indexdbService.connectDB();
+  async ngOnInit() {
+    await this.indexdbService.connectDB();
+    const users = await this.indexdbService.getUser();
+    if(users) {
+      this.userObj = JSON.parse(users);
+      this.appService.setUserInfoObs(this.userObj);
+    }
+   
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 import { IndexdbService } from '../indexdb.service';
 
 @Component({
@@ -9,12 +10,17 @@ import { IndexdbService } from '../indexdb.service';
 export class HeaderComponent implements OnInit {
   isData: any;
 
-  constructor(private readonly indexDbService: IndexdbService) { }
+  constructor(
+    private readonly appService: AppService) { }
 
-  async ngOnInit() {
-    await this.getDbData();
+   ngOnInit() {
+     this.getDbData();
   }
-  async getDbData() {
-    this.isData = this.indexDbService.getUser();
+   getDbData() {
+    this.appService.getUserInfoObs()
+    .subscribe(res => {
+      this.isData = res
+      console.log(this.isData);
+    });
   }
 }
