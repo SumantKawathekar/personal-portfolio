@@ -1,6 +1,36 @@
+<section id="education">
+  <!-- Education
+  ----------------------------------------------- -->
+  <div class="row work">
+    <div class="three columns header-col">
+      <h1><span>Education</span></h1>
+    </div>
+
+    <div class="nine columns main-col">
+      <div class="row item">
+        <div class="twelve columns" *ngIf="userData">
+          <h3 class="info">
+              {{userData.degreeName}}
+              <!-- <span>&bull;</span> -->
+            <!-- <em class="date">May 2016</em> -->
+          </h3>
+          <p>{{userData.universityName}}</p>
+
+        </div>
+      </div>
+      <!-- item end -->
+      <!-- item end -->
+    </div>
+    <!-- main-col end -->
+  </div>
+
+  </section>
 <section id="about">
   <div class="row">
     <div class="nine columns main-col">
+      <div class="download-heading">
+        <h1>Download my resume</h1>
+      </div>
       <div class="download">
         <a [attr.href]="userData.resumeLink" target="_blank" class="button"
           ><i class="fa fa-download"></i>Download Resume</a
