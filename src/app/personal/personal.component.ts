@@ -9,6 +9,8 @@ import { IndexdbService } from '../indexdb.service';
 })
 export class PersonalComponent implements OnInit {
   public userData: any;
+  skillSet: any;
+  hobbySet: any;
 
   constructor(
     private readonly indexdbService: IndexdbService,
@@ -21,8 +23,8 @@ export class PersonalComponent implements OnInit {
   async getAllUser() {
     this.appService.getUserInfoObs()
     .subscribe(res => {
-      this.userData = res
-      console.log(this.userData);
+      this.userData = res;
+      this.hobbySet = this.userData.hobbies;
     });
    
   }

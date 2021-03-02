@@ -32,7 +32,6 @@ export class IntroComponent implements OnInit {
         this.userObj = res
       }
     );
-    console.log(this.userObj);
   }
 
 }

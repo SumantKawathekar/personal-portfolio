@@ -22,6 +22,7 @@ import { CreatePortfolioComponent } from './create-portfolio/create-portfolio.co
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

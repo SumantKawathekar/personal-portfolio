@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSequence } from 'protractor';
 import { AppService } from '../app.service';
@@ -18,6 +19,7 @@ export class CreatePortfolioComponent implements OnInit {
   public experienceForm: FormGroup;
   public addressForm: FormGroup;
   public otherInfoForm: FormGroup;
+  @ViewChild('stepper') stepper: MatStepper;
   public expVals = [{
     value:'fresher', viewValue: 'fresher'},
     {value:'experienced', viewValue: 'experienced',
@@ -33,8 +35,6 @@ export class CreatePortfolioComponent implements OnInit {
   async ngOnInit() {
     this.initiateForm();
     await this.getAllUser();
-    
-
   }
 
   initiateForm() {
@@ -42,14 +42,18 @@ export class CreatePortfolioComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', Validators.required],
       shortDescription: ['', Validators.required],
-      aboutMe: ['', Validators.required],
+      aboutMe: ['', [Validators.required, Validators.minLength(200)]],
       universityName: ['', Validators.required],
       degreeName: ['', Validators.required],
+      hobbies: this.fb.array(
+        [this.buildHobbyArray()])
 
     })
     this.experienceForm = this.fb.group({
       // enableExp: new FormControl('fresher'),
       selectExp: ['', Validators.required],
+      resumeLink: ['', Validators.required],
+      companyName: [''],
       experienceBlocks: this.fb.array(
         [this.buildExperienceBlock()]),
         skills: this.fb.array([
@@ -68,7 +72,11 @@ export class CreatePortfolioComponent implements OnInit {
       )
     })
   }
-
+  buildHobbyArray(): FormGroup {
+    return this.fb.group({
+      hobbyDetail: ['']
+    })
+  }
     buildSocialMediaArray(): FormGroup {
       return this.fb.group({
         fbLink: [''],
@@ -85,7 +93,7 @@ export class CreatePortfolioComponent implements OnInit {
       areaInfo: ['', Validators.required],
       cityInfo: ['', Validators.required],
       zipCode: ['', Validators.required],
-      phoneNumber: ['', Validators.required]
+      phoneNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]
     });
   }
   buildSkillsArray(): FormGroup {
@@ -99,7 +107,6 @@ export class CreatePortfolioComponent implements OnInit {
       projectTitle: [''],
       projectInfo: [''],
       projectRole: [''],
-
     });
   }
 
@@ -113,6 +120,9 @@ export class CreatePortfolioComponent implements OnInit {
       universityName: this.createPortfolioForm.controls.universityName.value,
       degreeName: this.createPortfolioForm.controls.degreeName.value,
       enableExp: this.experienceForm.controls.selectExp.value,
+      resumeLink: this.experienceForm.controls.resumeLink.value,
+      hobbies: this.getExistingHobbies(),
+      companyName: this.getExistingCompanyname(),
       experienceBlocks: this.getExpValues(),
       skills: this.getSkills(),
       address: this.getAddress(),
@@ -122,6 +132,13 @@ export class CreatePortfolioComponent implements OnInit {
     this.indexdbService.addUser(user).then(res => this.appService.setUserInfoObs(user))
     this.route.navigate(['/intro']);
 
+  }
+  getExistingCompanyname() {
+    if(this.experienceForm.controls.selectExp.value === 'fresher') {
+      return ''
+    } else {
+      return this.experienceForm.controls.companyName.value;
+    }
   }
   getSocialMediaLinks() {
     const socialMediaArr =(<FormArray>this.otherInfoForm.get('socialMedia')).controls;
@@ -144,6 +161,15 @@ export class CreatePortfolioComponent implements OnInit {
     return addresses;
 
   }
+  getExistingHobbies() {
+    const hobbiesArr =(<FormArray>this.createPortfolioForm.get('hobbies')).controls;
+    const hobbies = [];
+    for (const iterator of hobbiesArr) {
+      hobbies.push(iterator.value)
+    }
+
+    return hobbies;
+  }
   getSkills() {
     const skillsArr =(<FormArray>this.experienceForm.get('skills')).controls;
     const skills = [];
@@ -156,11 +182,14 @@ export class CreatePortfolioComponent implements OnInit {
 
   getExpValues() {
     const expValueArr =(<FormArray>this.experienceForm.get('experienceBlocks')).controls;
-    const experience = [];
+    let experience = [];
+    if(this.experienceForm.controls.selectExp.value === 'experienced'){
     for (const iterator of expValueArr) {
       experience.push(iterator.value)
-      console.log(iterator.value)
     }
+  } else {
+    experience = [];
+  }
     console.log(experience)
     return experience;
   }
@@ -183,12 +212,15 @@ export class CreatePortfolioComponent implements OnInit {
     });
     this.experienceForm.patchValue({
       selectExp: this.userObj.enableExp,
+      companyName: this.userObj.companyName,
+      resumeLink: this.userObj.resumeLink
     })
     this.experienceForm.setControl('experienceBlocks', this.userObj.selectExp==='fresher'? 
           this.setExistingFresher(): this.setExistingExp(this.userObj.experienceBlocks))
     this.experienceForm.setControl('skills', this.setExistingSkills(this.userObj.skills))
     this.addressForm.setControl('address', this.setExistingAddress(this.userObj.address))
     this.otherInfoForm.setControl('socialMedia', this.setExistingSocialMedia(this.userObj.socialMedia))
+    this.createPortfolioForm.setControl('hobbies', this.setExistingHobbies(this.userObj.hobbies))
 
   }
 
@@ -208,11 +240,11 @@ export class CreatePortfolioComponent implements OnInit {
 
   setExistingFresher() {
     const formArray = new FormArray([]);
-    // formArray.push(this.fb.group({
-    //   projectTitle: '',
-    //   projectInfo: '',
-    //   projectRole: ''
-    // }))
+    formArray.push(this.fb.group({
+      projectTitle: '',
+      projectInfo: '',
+      projectRole: '',
+    }))
     return formArray
   }
 
@@ -229,6 +261,16 @@ export class CreatePortfolioComponent implements OnInit {
     });
     return formArray;
   }
+  setExistingHobbies(existingHobbies): FormArray {
+    const formArray = new FormArray([]);
+    existingHobbies.forEach(skill => {
+      formArray.push(this.fb.group({
+        hobbyDetail:skill.hobbyDetail
+      }))
+    });
+    return formArray;
+
+  }
   setExistingSkills(existingSkills): FormArray {
     const formArray = new FormArray([]);
     existingSkills.forEach(skill => {
@@ -240,14 +282,22 @@ export class CreatePortfolioComponent implements OnInit {
 
   }
   setExistingExp(existingExp): FormArray {
-    const formArray = new FormArray([]);
+    let formArray = new FormArray([]);
+    if(existingExp.length >0) {
     existingExp.forEach(exp => {
       formArray.push(this.fb.group({
         projectTitle: exp.projectTitle,
         projectInfo: exp.projectInfo,
-        projectRole: exp.projectRole
+        projectRole: exp.projectRole,
       }))
     });
+  } else {
+    formArray.push(this.fb.group({
+      projectTitle: '',
+        projectInfo: '',
+        projectRole: '',
+    }))
+  }
     return formArray;
   }
   addExperience() {
@@ -273,12 +323,22 @@ export class CreatePortfolioComponent implements OnInit {
   addAddress() {
     (<FormArray>this.addressForm.get('address')).push(this.buildAddressArray());
   }
-  public getExperinceValue() {
-    console.log('exp val', this.experienceForm.controls.selectExp.value);
-    if(this.experienceForm.controls.selectExp.value === 'fresher'){
-      this.setExistingFresher();
-    } else {
-      this.setExistingExp(this.userObj.experienceBlocks)
+
+  addHobby() {
+    (<FormArray>this.createPortfolioForm.get('hobbies')).push(this.buildHobbyArray());
+  }
+  removeHobby(hobbyIndex: number) {
+    if ((<FormArray>this.createPortfolioForm.get('hobbies')).length > 1) {
+      (<FormArray>this.createPortfolioForm.get('hobbies')).removeAt(hobbyIndex);
     }
   }
+  public getExperinceValue() {
+    // console.log('exp val', this.experienceForm.controls.selectExp.value);
+    // if(this.experienceForm.controls.selectExp.value === 'fresher'){
+    //   this.setExistingFresher();
+    // } else {
+    //   this.setExistingExp(this.userObj.experienceBlocks)
+    // }
+  }
+
 }

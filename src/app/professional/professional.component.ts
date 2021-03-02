@@ -20,7 +20,6 @@ export class ProfessionalComponent implements OnInit {
     this.getAllUser()
   }
   public gotoTechnologies() {
-    console.log('in technology')
     let el = document.getElementById('portfolio');
     
     el.scrollIntoView({behavior: "smooth"});
@@ -28,13 +27,11 @@ export class ProfessionalComponent implements OnInit {
 
   public gotoProject() {
     let el = document.getElementById('resume');
-    console.log(el)
     el.scrollIntoView({behavior: "smooth"});
   }
 
   public gotoTop() {
     let el = document.getElementById('professional-info');
-    console.log(el)
     el.scrollIntoView({behavior: "smooth"});
   }
 
@@ -44,7 +41,6 @@ export class ProfessionalComponent implements OnInit {
       this.userData = res;
       this.professionalData = this.userData.experienceBlocks;
       this.skillSet = this.userData.skills;
-      console.log(this.userData);
     });
   }
 

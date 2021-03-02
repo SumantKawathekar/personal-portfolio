@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
     this.appService.getUserInfoObs()
     .subscribe(res => {
       this.isData = res
-      console.log(this.isData);
     });
   }
 }

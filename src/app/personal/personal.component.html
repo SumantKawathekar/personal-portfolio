@@ -3,10 +3,6 @@
 
 <section id="about">
     <div class="row">
-      <div class="three columns">
-        <img class="profile-pic" src="assets/images/profilepic.jpg" alt="" />
-      </div>
-  
       <div class="nine columns main-col">
         <h2>About Me</h2>
   
@@ -16,7 +12,7 @@
         </p>
   
         <div class="download">
-          <a href="https://drive.google.com/file/d/1YUGw9X6eFQz43F0phatx91KY1ApZ9doI/view?usp=sharing" target="_blank" class="button"
+          <a [attr.href]="userData.resumeLink" target="_blank" class="button"
             ><i class="fa fa-download"></i>Download Resume</a
           >
         </div>
@@ -35,11 +31,13 @@
       <div class="nine columns main-col">
         <div class="row item">
           <div class="twelve columns" *ngIf="userData">
-            <h3>{{userData.universityName}}</h3>
-            <p class="info">
-                {{userData.degreeName}}<span>&bull;</span>
-              <em class="date">May 2016</em>
-            </p>
+            <h3 class="info">
+                {{userData.degreeName}}
+                <!-- <span>&bull;</span> -->
+              <!-- <em class="date">May 2016</em> -->
+            </h3>
+            <p>{{userData.universityName}}</p>
+
           </div>
         </div>
         <!-- item end -->
@@ -47,5 +45,30 @@
       </div>
       <!-- main-col end -->
     </div>
+
     </section>
-    <app-hobbies></app-hobbies>
+
+    <section id="portfolio">
+      <div class="row">
+        <div class="twelve columns collapsed">
+          <h1>My hobbies.</h1>
+    
+          <!-- portfolio-wrapper -->
+          <div id="portfolio-wrapper"  class="bgrid-quarters s-bgrid-thirds cf">
+            <div class="columns portfolio-item">
+            <ul class="skill-list">
+              <li *ngFor="let hobby of hobbySet">
+                <h5>{{hobby.hobbyDetail}}</h5>
+              </li>
+            </ul>
+            </div>
+           
+          </div>
+          <!-- portfolio-wrapper end -->
+        </div>
+        <!-- twelve columns end -->
+        <!-- modal-01 End -->
+      </div>
+      <!-- row End -->
+    </section>
+    <!-- <app-hobbies></app-hobbies> -->

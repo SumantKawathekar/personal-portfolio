@@ -53,9 +53,6 @@ export class ContactComponent implements OnInit {
     .subscribe(res => {
       this.userData = res;
       this.address = this.userData.address
-
-      console.log(this.userData);
-      console.log(this.address);
     });
   }
 

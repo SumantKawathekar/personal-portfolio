@@ -6,36 +6,62 @@
 
         <div id="editPersonalInfo">
           <h1>Personal Information</h1>
-          <mat-label>Your full name: </mat-label>
+          <mat-label class="required">Your full name <span>*</span> </mat-label>
           <input matInput type="text" formControlName="name" placeholder="Your name" requied>
           <div class="error" *ngIf="createPortfolioForm.controls.name.touched &&
           createPortfolioForm.controls.name.errors && createPortfolioForm.controls.name.errors.required">Name is
             required</div>
 
-          <mat-label>Your email ID: </mat-label>
+          <mat-label class="required">Your email ID <span>*</span> </mat-label>
           <input matInput type="text" formControlName="email" placeholder="Your email" requied>
           <div class="error" *ngIf="createPortfolioForm.controls.email.touched &&
           createPortfolioForm.controls.email.errors && createPortfolioForm.controls.email.errors.required">Email is
             required</div>
-          <mat-label>Short description about your work: </mat-label>
+          <mat-label class="required">Short description about your work <span>*</span> </mat-label>
           <textarea matInput type="text" formControlName="shortDescription"
             placeholder="Give some description about your work proficiency" requied></textarea>
-            <div class="error" *ngIf="createPortfolioForm.controls.shortDescription.touched &&
-            createPortfolioForm.controls.shortDescription.errors && createPortfolioForm.controls.shortDescription.errors.required">Please give short note on your work and tecnologies</div>
-          <mat-label>About Yourself: </mat-label>
-          <textarea matInput type="text" formControlName="aboutMe"
-            placeholder="Write something about yourself" requied></textarea>
-            <div class="error" *ngIf="createPortfolioForm.controls.aboutMe.touched &&
-            createPortfolioForm.controls.aboutMe.errors && createPortfolioForm.controls.aboutMe.errors.required">Please give some information about yourself</div>
-          <mat-label>Name of College/University: </mat-label>
-          <input matInput type="text" formControlName="universityName" placeholder="Your Unversity or College Name" requied>
-          <mat-error class="error" *ngIf="createPortfolioForm.controls.universityName.touched &&
-          createPortfolioForm.controls.universityName.errors && createPortfolioForm.controls.universityName.errors.required">University name is
+          <div class="error"
+            *ngIf="createPortfolioForm.controls.shortDescription.touched &&
+            createPortfolioForm.controls.shortDescription.errors && createPortfolioForm.controls.shortDescription.errors.required">
+            Please give short note on your work and tecnologies</div>
+          <mat-label class="required">About Yourself <span>*</span> </mat-label>
+          <textarea matInput type="text" formControlName="aboutMe" placeholder="Write something about yourself"
+            requied></textarea>
+          <div class="error" *ngIf="createPortfolioForm.controls.aboutMe.touched &&
+            createPortfolioForm.controls.aboutMe.errors && createPortfolioForm.controls.aboutMe.errors.required">Please
+            give some information about yourself</div>
+          <div class="error"
+            *ngIf="createPortfolioForm.controls.aboutMe.errors && createPortfolioForm.controls.aboutMe.errors.minlength">
+            Must be minimum 200 characters long </div>
+          <mat-label class="required">Name of College/University <span>*</span> </mat-label>
+          <input matInput type="text" formControlName="universityName" placeholder="Your Unversity or College Name"
+            requied>
+          <mat-error class="error"
+            *ngIf="createPortfolioForm.controls.universityName.touched &&
+          createPortfolioForm.controls.universityName.errors && createPortfolioForm.controls.universityName.errors.required">University name
+            is
             required</mat-error>
-          <mat-label>Qualification: </mat-label>
+          <mat-label class="required">Qualification <span>*</span> </mat-label>
           <input matInput type="text" formControlName="degreeName" placeholder="Your Degree" requied>
           <div class="error" *ngIf="createPortfolioForm.controls.degreeName.touched &&
-          createPortfolioForm.controls.degreeName.errors && createPortfolioForm.controls.degreeName.errors.required">Please fill your Degree</div>
+          createPortfolioForm.controls.degreeName.errors && createPortfolioForm.controls.degreeName.errors.required">
+            Please enter your qualification</div>
+
+          <div formArrayName="hobbies" *ngFor="let hobby of
+      createPortfolioForm.get('hobbies')['controls']; let i = index">
+            <div [formGroupName]="i">
+              <mat-label class="required">Hobbies<span>*</span></mat-label>
+              <input type="text" placeholder="Name of Hobby" formControlName="hobbyDetail" required />
+            </div>
+            <button class="float-left" mat-icon-button color="primary" aria-label="Add" (click)="addHobby()"
+              matTooltip="Add">
+              <mat-icon>add_circle_outline</mat-icon>
+            </button>
+            <button class="float-left" mat-icon-button color="primary" aria-label="Add" (click)="removeHobby(i)"
+              matTooltip="Add">
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+          </div>
           <!-- <button mat (click)="onSubmit()">Next</button> -->
           <div class="edit-form-btns">
             <button mat-flat-button color="primary" matStepperNext [disabled]="!createPortfolioForm.valid">Next</button>
@@ -49,7 +75,7 @@
       <form [formGroup]="experienceForm" class="form-wrapper">
         <div id="editProfessionalInfo">
           <mat-form-field appearance="fill">
-            <mat-label>Choose experience</mat-label>
+            <mat-label class="required">Choose experience<span>*</span></mat-label>
             <mat-select formControlName="selectExp" (selectionChange)="getExperinceValue()" required>
               <mat-option>Select</mat-option>
               <mat-option *ngFor="let exp of expVals" [value]="exp.value">
@@ -57,7 +83,18 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-
+          <div>
+            <mat-label>Uploaded Resume</mat-label>
+            <input type="text" placeholder="Please upload your resume on drive and share link"
+              formControlName="resumeLink" />
+          </div>
+          <div *ngIf="experienceForm.controls.selectExp.value==='experienced'">
+            <mat-label class="required">Company Name <span>*</span></mat-label>
+            <input type="text" placeholder="Name of current company" formControlName="companyName" />
+            <div class="error" *ngIf="experienceForm.controls.companyName.touched &&
+            experienceForm.controls.companyName.errors && experienceForm.controls.companyName.errors.required">
+              Please enter your current company name</div>
+          </div>
           <div *ngIf="experienceForm.controls.selectExp.value==='experienced'">
             <h1>Experience</h1>
             <div formArrayName="experienceBlocks" *ngFor="let experience of
@@ -87,7 +124,7 @@
           <div formArrayName="skills" *ngFor="let skill of
       experienceForm.get('skills')['controls']; let i = index">
             <div [formGroupName]="i">
-              <mat-label>Skill Name</mat-label>
+              <mat-label class="required">Skill Name<span>*</span></mat-label>
               <input type="text" placeholder="Name of Skill" formControlName="skillName" required />
             </div>
             <button class="float-left" mat-icon-button color="primary" aria-label="Add" (click)="addSkill()"
@@ -119,19 +156,20 @@
           <div formArrayName="address" *ngFor="let address of
       addressForm.get('address')['controls']; let i = index">
             <div [formGroupName]="i">
-              <mat-label>House/Flat Number</mat-label>
+              <mat-label class="required">House/Flat Number <span>*</span></mat-label>
               <input type="text" placeholder="House" formControlName="houseInfo" required />
-              <mat-label>Area</mat-label>
+              <mat-label class="required">Area<span>*</span></mat-label>
               <input type="text" placeholder="Area" formControlName="areaInfo" required />
-              <mat-label>City</mat-label>
+              <mat-label class="required">City<span>*</span></mat-label>
               <input type="text" placeholder="Name of city" formControlName="cityInfo" required />
-              <mat-label>Zipcode</mat-label>
+              <mat-label class="required">Zipcode<span>*</span></mat-label>
               <input type="text" placeholder="Zipcode" formControlName="zipCode" required />
-              <mat-label>Phone</mat-label>
+              <mat-label class="required">Phone<span>*</span></mat-label>
               <input type="text" placeholder="Phone Number" formControlName="phoneNumber" required />
+              <div class="error" *ngIf="addressForm.invalid">
+                Please enter your full address above</div>
             </div>
           </div>
-          {{addressForm.valid}}
           <div class="edit-form-btns">
             <!-- <button mat-flat-button color="primary">Back</button>
           <button mat-flat-button color="primary">Next</button> -->
