@@ -11,3 +11,23 @@
         }
     }
 }
+.skill-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    li {
+        margin: 0 10px;
+        h5 {
+            min-width: 175px;
+            line-height: 40px;
+            text-align: center;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            font-size: 16px;
+            color: #fff;
+        }
+    }
+}

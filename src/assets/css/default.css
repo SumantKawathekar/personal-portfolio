@@ -470,11 +470,10 @@ select {
    border: 0;
    outline: none;
    vertical-align: middle;
-   min-width: 225px;
-	max-width: 100%;
+   width:100%;
    font-size: 15px;
    line-height: 24px;
-	color: #647373;
+	color: #000;
 	background: #D3D9D9;
 
 }
@@ -518,7 +517,7 @@ input[type="checkbox"] { display: inline; }
 .row {
    width: 96%;
    max-width: 1020px;
-   margin: 0 auto;
+   margin: 0 auto 22px auto;
 }
 /* fixed width for IE8 */
 .ie .row { width: 1000px ; }

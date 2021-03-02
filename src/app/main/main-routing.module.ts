@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ContactComponent } from '../contact/contact.component';
+import { CreatePortfolioComponent } from '../create-portfolio/create-portfolio.component';
 import { IntroComponent } from '../intro/intro.component';
 import { PersonalComponent } from '../personal/personal.component';
 import { ProfessionalComponent } from '../professional/professional.component';
@@ -9,7 +10,7 @@ import { MainComponent } from './main.component';
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'intro',
+        redirectTo: 'create',
         pathMatch: 'full'
     },
     {
@@ -23,6 +24,10 @@ const routes: Routes = [
     {
         path: 'intro',
         component: IntroComponent
+    },
+    {
+        path: 'create',
+        component: CreatePortfolioComponent
     },
     {
         path: 'contact',

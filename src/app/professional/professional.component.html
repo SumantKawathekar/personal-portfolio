@@ -1,16 +1,81 @@
-<section id="professional-info">
-<nav class="professional-info-btn">
-    <ul id="nav" >
-      <li> <button (click)="gotoProject()">Projects</button></li>
-      <li>
-        <button (click)="gotoTechnologies()">Technologies</button>
-      </li>
-    </ul>
-    <!-- end #nav -->
-  </nav>
-<app-professional-info></app-professional-info>
-<app-technologies></app-technologies>
+<section id="about">
+  <div class="row">
+    <div class="nine columns main-col">
+      <div class="download">
+        <a [attr.href]="userData.resumeLink" target="_blank" class="button"
+          ><i class="fa fa-download"></i>Download Resume</a
+        >
+      </div>
+    </div>
+    <!-- end .main-col -->
+  </div>
 
+<section id="professional-info">
+  <section id="resume">
+
+    <div class="row work" *ngIf="userData && userData.companyName!==''">
+      <div class="three columns header-col">
+        <h1><span>Company</span></h1>
+      </div>
+  
+      <div class="nine columns main-col" >
+        <div class="row item">
+          <div class="twelve columns">
+            <h3>{{userData.companyName}}</h3>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+    <!-- Work
+    ----------------------------------------------- -->
+    <div *ngIf="professionalData && professionalData.length>0">
+    <div class="row work" >
+      <div class="three columns header-col">
+        <h1><span>Work</span></h1>
+      </div>
+  
+      <div class="nine columns main-col" *ngFor="let exp of professionalData">
+        <div class="row item">
+          <div class="twelve columns">
+            <h3>{{exp.projectTitle}}</h3>
+            <p class="info">
+              {{exp.projectRole}} 
+            </p>
+            <p>
+              {{exp.projectInfo}}
+            </p>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+    <!-- End Work -->
+  </section>
+  <section id="portfolio">
+    <div class="row">
+      <div class="twelve columns collapsed">
+        <h1>Check Out My Skill Set.</h1>
+  
+        <!-- portfolio-wrapper -->
+        <div id="portfolio-wrapper"  class="bgrid-quarters s-bgrid-thirds cf">
+          <div class="columns portfolio-item">
+          <ul class="skill-list">
+            <li *ngFor="let skill of skillSet">
+              <h5>{{skill.skillName}}</h5>
+            </li>
+          </ul>
+          </div>
+         
+        </div>
+        <!-- portfolio-wrapper end -->
+      </div>
+      <!-- twelve columns end -->
+      <!-- modal-01 End -->
+    </div>
+    <!-- row End -->
+  </section>
 <footer>
     <div class="row">
       <div id="go-top">

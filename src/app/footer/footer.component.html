@@ -1,0 +1,24 @@
+<footer>
+    <div class="row">
+      <div class="twelve columns" *ngIf="socialMediaLinks">
+        <ul class="social-links">
+          <li>
+            <a [attr.href]="socialMediaLinks[0].fbLink" target="_blank"><i class="fa fa-facebook"></i></a>
+          </li>
+          <li>
+            <a [attr.href]="socialMediaLinks[0].gplusLink"><i class="fa fa-google-plus" target="_blank"></i></a>
+          </li>
+          <li>
+            <a [attr.href]="socialMediaLinks[0].linkedinLink" target="_blank"><i class="fa fa-linkedin"></i></a>
+          </li>
+          <li>
+            <a [attr.href]="socialMediaLinks[0].instaLink" target="_blank"><i class="fa fa-instagram"></i></a>
+          </li>
+          <li>
+            <a [attr.href]="socialMediaLinks[0].skypeLink"><i class="fa fa-skype"></i></a>
+          </li>
+        </ul>
+      </div>
+  
+    </div>
+  </footer>
